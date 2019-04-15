@@ -15,7 +15,7 @@ def new_post():
     form = PostForm()
     if form.validate_on_submit():
         if form.picture.data:
-            post = Post(title=form.title.data, content=form.content.data, author=current_user)
+            post = Post(title=form.title.data, content=form.content.data, author=current_user, image_file=form.picture.data)
             post.image_file = save_post_picture(form.picture.data)
         else:
             post = Post(title=form.title.data, content=form.content.data, author=current_user)
