@@ -14,11 +14,11 @@ posts = Blueprint('posts', __name__)
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
+        post = Post(title=form.title.data, content=form.content.data, author=current_user)
         if form.picture.data:
-            post = Post(title=form.title.data, content=form.content.data, author=current_user, image_file=form.picture.data)
-            post.image_file = save_post_picture(form.picture.data)
-        else:
-            post = Post(title=form.title.data, content=form.content.data, author=current_user)
+            post_picture = save_post_picture(form.picture.data)
+            post = Post(title=form.title.data, content=form.content.data, author=current_user, image_file=post_picture)
+        # post = Post(title=form.title.data, content=form.content.data, image_file=save_post_picture(form.picture.data), author=current_user)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
