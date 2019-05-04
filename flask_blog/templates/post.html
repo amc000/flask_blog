@@ -15,11 +15,13 @@
       </div>
       <h2 class="article-title">{{ post.title }}</h2>
       {% if post.image_file %}
-        <img class="article-img" src="{{ url_for('static', filename='post_pics/' + post.image_file) }}">
+        <a href="{{ url_for('static', filename='post_pics/' + post.image_file) }}"><img class="article-img" src="{{ url_for('static', filename='post_pics/' + post.image_file) }}"></a>
       {% else %}
         the image failed to load :)
       {% endif %}
       <p class="article-content">{{ post.content }}</p>
+      <hr>
+      <p class="article-content"><strong>${{ post.price }}</strong></p>
     </div>
   </article>
   <!-- Modal -->

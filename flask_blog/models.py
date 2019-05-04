@@ -37,8 +37,12 @@ class Post(db.Model):
     title = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     image_file = db.Column(db.String(20), unique=False, nullable=False, default='default.jpg')
+    # Audio_file is similar to image_file in that it is a filename which is appended to the appropriate directory
+    # when it is used. You should be able to access a file with the same filename from audio_snippets or audio_files.
+    audio_file = db.Column(db.String(20), unique=False, nullable=True)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
+    # Prices of tracks are stored in USD and the integer is total USD cents.
+    price = db.Column(db.Integer, unique=False, nullable=False, default=500)
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}', '{self.image_file}')"

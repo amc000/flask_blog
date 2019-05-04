@@ -16,8 +16,9 @@ def new_post():
     if form.validate_on_submit():
         post = Post(title=form.title.data, content=form.content.data, author=current_user)
         if form.picture.data:
+            # post_track = save_post_track(form.track.data)
             post_picture = save_post_picture(form.picture.data)
-            post = Post(title=form.title.data, content=form.content.data, author=current_user, image_file=post_picture)
+            post = Post(title=form.title.data, content=form.content.data, author=current_user, image_file=post_picture, track=form.track)
         # post = Post(title=form.title.data, content=form.content.data, image_file=save_post_picture(form.picture.data), author=current_user)
         db.session.add(post)
         db.session.commit()

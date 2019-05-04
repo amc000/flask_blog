@@ -11,11 +11,13 @@
               <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
               <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
             </div>
-            <h2><a class="article-title" href="{{ url_for('posts.post, post_id=post.id) }}">{{ post.title }}</a></h2>
+            <h2><a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
             {% if post.image_file %}
               <img class="article-img" src="{{ url_for('static', filename='post_pics/' + post.image_file) }}">
             {% endif %}
             <p class="article-content">{{ post.content }}</p>
+            <hr>
+            <p class="article-content"><strong>${{ post.price }}</strong></p>
           </div>
         </article>
     {% endfor %}
